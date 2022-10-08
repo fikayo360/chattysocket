@@ -1,4 +1,9 @@
-const io = require("socket.io")(8900, {
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+
+const io = require("socket.io")(server, {
   cors: {
     origin: "https://fksocial.netlify.app",
   },
@@ -68,3 +73,6 @@ const io = require("socket.io")(8900, {
   })
 
 
+  server.listen(8900, () => {
+    console.log('listening on *:8900');
+  });
